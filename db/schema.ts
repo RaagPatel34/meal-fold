@@ -1,0 +1,2 @@
+import {sqliteTable,text,integer,index} from 'drizzle-orm/sqlite-core';
+export const meals=sqliteTable('meals',{id:text('id').primaryKey(),userId:text('user_id').notNull(),date:text('date').notNull(),name:text('name').notNull(),period:text('period').notNull(),items:text('items').notNull(),createdAt:integer('created_at').notNull()},t=>[index('idx_meals_user_date').on(t.userId,t.date),index('idx_meals_user_created').on(t.userId,t.createdAt)]);
