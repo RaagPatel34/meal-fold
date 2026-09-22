@@ -1,0 +1,38 @@
+[
+  {
+    "restaurant": "canes",
+    "scope": "Full August 2026 nutrition sheet: food, combos and listed drink sizes, plus a clearly labeled naked-chicken estimate. Off-menu preparations are not published by Cane’s."
+  },
+  {
+    "restaurant": "taco",
+    "scope": "Full Taco Bell-linked Nutritionix table checked September 21, 2026, including standard menu, breakfast, sauces, drinks, regional and Cantina recipes. Availability varies. Unlimited custom combinations are not included. The preserved Fresco-style option remains a historical third-party estimate."
+  },
+  {
+    "restaurant": "panda",
+    "scope": "All numeric rows in the published nutrition table: entrées, sides, cub meals, appetizers, sauces and drink sizes. Local and limited-time offerings can differ."
+  },
+  {
+    "restaurant": "kura",
+    "scope": "All numeric rows in the published US nutrition table. Values describe one listed menu serving, which can contain multiple pieces. Serving weights are not published."
+  },
+  {
+    "restaurant": "leaves",
+    "scope": "All 105 entries in the published table, including sizes and add-ons. Some macro cells and add-on sizes are blank; assumptions remain labeled Estimate. The page gives a menu date of June 15, 2026 and nutrition review date of January 1, 2019."
+  },
+  {
+    "restaurant": "bean",
+    "scope": "All usable rows in the published US drinks and add-ons PDF, including sizes and seasonal recipes. Repeated names with different sugar values are kept as alternate published rows. Food items and rows without nutrition are not covered by this PDF."
+  },
+  {
+    "restaurant": "starbucks",
+    "scope": "All 284 products in the public US menu were retrieved. 684 size-and-recipe entries have complete nutrition. 24 products supplied no complete nutrition (mostly retail coffee beans, plus two seasonal drinks and a shopping bag) and are excluded. Milk, syrup, foam and other customizations require manual adjustment."
+  },
+  {
+    "restaurant": "inout",
+    "scope": "Full January 2026 nutrition sheet: burgers, Protein Style, mustard/ketchup variants, fries, shakes, cocoa, milk and listed fountain sizes with and without ice. Other secret-menu combinations are not published."
+  },
+  {
+    "restaurant": "chipotle",
+    "scope": "Full official US PDF: adult and kid ingredients, sides, beverages and regional supplier variants. The PDF file is dated March 2025 and its charts October 2024; newer limited-time recipes are not verified by this sheet. Build meals ingredient by ingredient."
+  }
+]

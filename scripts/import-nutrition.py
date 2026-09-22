@@ -34,6 +34,7 @@ def parse_leaves(content, checked):
             if missing: note+=' Source leaves '+', '.join(missing)+' blank; assumed 0 g for tracking. This is an estimate, not a published zero.'
             if not size: note+=' Source does not specify a weight or volume for this portion; confirm your add-on amount.'
             rows.append(entry('leaves',clean(f['name']),size[0]+' · standard recipe' if size else '1 listed portion · size unspecified',category,macros,note,'estimate' if missing or not size else 'published'))
+            rows[-1]['nutritionDetails']=[dict(label=re.sub(r'\s*\([^)]*\)$','',k),value=clean(v) or 'Not published',unit=(re.search(r'\(([^)]*)\)$',k)[1] if re.search(r'\(([^)]*)\)$',k) and clean(v) else '')) for k,v in f['nutrition'].items()]
     if len(rows)<50: raise ValueError('7 Leaves import unexpectedly small; previous catalog kept.')
     return rows
 
@@ -60,6 +61,8 @@ def parse_bean(content, checked):
                     serving=(size[0] if size else '1 listed serving')+' · standard recipe'
                     note=f'Official US Coffee Bean & Tea Leaf nutrition PDF, page {page_index+1}, retrieved {checked}. Standard recipe and listed size; milk swaps, sweetness changes and toppings require an estimate. This PDF includes older and seasonal recipes; availability varies.'
                     rows.append(entry('bean',name,serving,item_category,macros,note))
+                    labels=[('Calories','kcal'),('Total fat','g'),('Saturated fat','g'),('Trans fat','g'),('Cholesterol','mg'),('Sodium','mg'),('Carbohydrates','g'),('Fiber','g'),('Sugar','g'),('Added sugar','g'),('Protein','g'),('Vitamin D','% DV'),('Calcium','% DV'),('Iron','% DV'),('Potassium','% DV')]
+                    rows[-1]['nutritionDetails']=[dict(label=l,value=clean(v) or 'Not published',unit=u if clean(v) else '') for v,(l,u) in zip(row[1:],labels)]
     if len(rows)<100: raise ValueError('Coffee Bean import unexpectedly small; previous catalog kept.')
     return rows
 
@@ -79,7 +82,10 @@ def main():
     unique={}
     for row in all_rows:
         if row['id'] in unique and row != unique[row['id']]:
-            raise ValueError('Conflicting duplicate nutrition; previous catalog kept.')
+            # Retain variants when the PDF repeats a name with different micronutrients.
+            row['id']+='-'+hashlib.sha256(json.dumps(row['nutritionDetails'],sort_keys=True).encode()).hexdigest()[:6]
+            row['name']+=' · alternate published row'
+            row['note']+=' The source repeats this name with different sugar values; this entry preserves that alternate row.'
         unique[row['id']]=row
     all_rows=list(unique.values())
     for record in source_records:
