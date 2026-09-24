@@ -16,6 +16,16 @@ npm run dev
 
 Click **Sign in to your log** once if prompted. This uses a local development identity, not an online account. The database lives in `.wrangler/state` and survives server restarts. Source code is backed up to GitHub; your private meal history is deliberately excluded. To back up meals, stop the app and separately copy `.wrangler/state` securely. If browser cookies are cleared, use the local sign-in again to reopen the same laptop log.
 
+## Everyday tracking
+
+- **Daily goals:** set your own calories, protein, carbs and fat targets. Leave any field blank to track without a target. Progress uses the selected date’s saved meals; it does not recommend an intake.
+- **Favorite orders:** save a customized draft without logging it, or star an existing meal. Favorites retain the portions and nutrition you saved. Add a favorite to the builder, review it, and then log it. Removing a favorite never removes a logged meal.
+- **Weekly progress:** view Monday through Sunday for the selected date, switch between calories and macros, and tap a day to open its log. Averages include only days with logged meals; a missing log does not imply zero intake. Dashed goal lines use your current targets, not historical goals.
+
+Goals and favorites are saved in the same local database as your meals, scoped to your signed-in identity. They survive browser reloads and do not depend on browser storage. Existing meals remain unchanged. The launcher initializes new tables with additive, repeatable statements and no longer needs a production build before starting development mode.
+
+Run `npm run test:tracking` for the isolated SQLite checks covering persistence, repeat saves, user isolation, weekly boundaries, and compatibility with existing meals. `wrangler.local.json` uses the same local database identifier as the development server; keep them aligned.
+
 ## Restaurants and data
 
 2,427 catalog entries, including sizes and regional variants. Sources checked September 21, 2026. Coverage follows the published sources; custom combinations and items without published nutrition remain limited.

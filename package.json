@@ -14,8 +14,9 @@
     "db:generate": "drizzle-kit generate",
     "nutrition:refresh": "python3 scripts/import-nutrition.py",
     "typecheck": "tsc --noEmit",
-    "db:init": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file scripts/init-local.sql",
-    "setup": "npm run build && npm run db:init"
+    "db:init": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config wrangler.local.json --persist-to .wrangler/state --file scripts/init-local.sql",
+    "setup": "npm run build && npm run db:init",
+    "test:tracking": "node scripts/check-tracking.cjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

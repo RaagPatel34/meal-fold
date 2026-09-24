@@ -1,0 +1,5 @@
+import {z} from 'zod';
+export const dateSchema=z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(v=>!isNaN(Date.parse(v))&&new Date(v).toISOString().slice(0,10)===v);
+const num=z.number().finite().min(0).max(20000);
+export const itemSchema=z.object({nutritionDetails:z.array(z.object({label:z.string().max(80),value:z.string().max(80),unit:z.string().max(30)})).max(40).optional(),id:z.string().max(100),lineId:z.string().max(100),name:z.string().trim().min(1).max(160),restaurant:z.string().max(100),serving:z.string().trim().min(1).max(160),category:z.string().max(80),quality:z.enum(['published','estimate','custom']),source:z.string().max(2000).refine(v=>!v||/^https:\/\//.test(v)),note:z.string().max(2000),calories:num,protein:num,carbs:num,fat:num,quantity:z.number().finite().gt(0).max(100)});
+export const mealSchema=z.object({id:z.string().uuid(),date:dateSchema,name:z.string().trim().min(1).max(160),period:z.enum(['Breakfast','Lunch','Dinner','Snack']),items:z.array(itemSchema).min(1).max(100)});
