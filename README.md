@@ -91,3 +91,10 @@ The original prototype includes Sites production authentication. Its local login
 ## Third-party materials
 
 Restaurant names, nutrition data and the remotely linked Cane’s photo belong to their respective sources. Open-source dependencies and vendored components retain their licenses, including `build/sites-vite-plugin.LICENSE`. No open-source license has been selected for this project's custom code.
+
+### Correct, find, and export meals
+
+- Use the edit control on a logged meal to correct its date, meal type, portions, or per-serving macros. The original entry is updated, so corrections never add a duplicate. Favorites remain independent snapshots.
+- Use the arrows beside the date, or Today, to navigate the daily log.
+- Open **Find a meal that fits** to filter the current restaurant by maximum calories, minimum protein, and published nutrition, or sort by calories/protein. Filters apply to listed servings before customization.
+- **Export full log (CSV)** downloads every logged item across all dates, including quantities, scaled macros, and nutrition quality. This is a spreadsheet export, not an automatic restore backup; goals and favorites are not included.
