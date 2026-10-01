@@ -2,9 +2,9 @@
 import json,math
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
-rows=json.loads((root/'data/imported-menu.json').read_text())['foods']+json.loads((root/'data/refreshed-menu.json').read_text())['foods']
+rows=json.loads((root/'data/imported-menu.json').read_text())['foods']+json.loads((root/'data/refreshed-menu.json').read_text())['foods']+json.loads((root/'data/new-restaurants.json').read_text())['foods']
 assert len({r['id'] for r in rows})==len(rows)
-assert {r['restaurant'] for r in rows}=={'canes','taco','panda','kura','leaves','bean','starbucks','inout','chipotle'}
+assert {r['restaurant'] for r in rows}=={'canes','taco','panda','kura','leaves','bean','starbucks','inout','chipotle','dq','pollo'}
 for r in rows:
     assert r['quality'] in ['published','estimate','custom']
     assert r['source'].startswith('https://') and r['note']
@@ -34,4 +34,7 @@ check('starbucks','Caffè Latte · Short',(100,6,10,3.5))
 r=next(r for r in rows if r['restaurant']=='taco' and r['name']=='Avocado Salsa Verde Packet')
 assert r['quality']=='estimate' and r['carbs']==0.5
 assert next(d['value'] for d in r['nutritionDetails'] if d['label']=='Carbohydrates')=='<1'
-print(f'PASS: {len(rows)+2:,} catalog entries including two off-menu estimates; all nine restaurants, unique IDs, API limits, source rows and less-than preservation.')
+check('dq','OREO® Cookie Blizzard - Mini',(330,7,48,12))
+check('pollo','Chicken Breast',(200,34,0,8))
+check('pollo','Original Pollo Bowl®',(580,41,83,10))
+print(f'PASS: {len(rows)+2:,} catalog entries including two off-menu estimates; all eleven restaurants, unique IDs, API limits, source rows and less-than preservation.')

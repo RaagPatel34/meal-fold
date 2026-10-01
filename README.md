@@ -98,3 +98,9 @@ Restaurant names, nutrition data and the remotely linked Cane’s photo belong t
 - Use the arrows beside the date, or Today, to navigate the daily log.
 - Open **Find a meal that fits** to filter the current restaurant by maximum calories, minimum protein, and published nutrition, or sort by calories/protein. Filters apply to listed servings before customization.
 - **Export full log (CSV)** downloads every logged item across all dates, including quantities, scaled macros, and nutrition quality. This is a spreadsheet export, not an automatic restore backup; goals and favorites are not included.
+
+### Dairy Queen and El Pollo Loco
+
+The catalog now also includes Dairy Queen's official US food/treats table and El Pollo Loco's current September 2026 guide, retrieved September 30, 2026. Each entry retains calories, macros, other published nutrients, source link, and listed size. DQ basket drinks and El Pollo Loco entrée-only sides/drinks must be added separately. Starred El Pollo Loco salads exclude dressing. Whole DQ cake entries are explicitly labeled; quantities represent the fraction of that whole cake.
+
+The DQ source's inconsistent Parmesan Garlic 4-piece basket row is excluded rather than using shifted nutrient cells. Regional/seasonal availability varies. Rebuild these captures with `python3 scripts/import-dq-pollo.py`; source captures stay in ignored `work/new-restaurants/`.

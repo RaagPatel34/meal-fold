@@ -34,5 +34,13 @@
   {
     "restaurant": "chipotle",
     "scope": "Full official US PDF: adult and kid ingredients, sides, beverages and regional supplier variants. The PDF file is dated March 2025 and its charts October 2024; newer limited-time recipes are not verified by this sheet. Build meals ingredient by ingredient."
+  },
+  {
+    "restaurant": "dq",
+    "scope": "Official US food and treats table retrieved September 30, 2026: burgers, chicken, sides, Blizzard sizes, shakes, sundaes, drinks and listed add-ons. Baskets exclude drinks. Texas food menus and local recipes may differ. One inconsistent Parmesan Garlic 4-piece basket row is excluded pending reliable values."
+  },
+  {
+    "restaurant": "pollo",
+    "scope": "Current official September 2026 nutrition guide: featured items, grilled chicken, meals, bowls, tacos, burritos, sides, sauces, sweets and drinks without ice. Starred salads exclude dressing. Entrée-only combos and kids entries exclude sides and drinks."
   }
 ]
