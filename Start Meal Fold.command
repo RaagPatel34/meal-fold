@@ -19,4 +19,7 @@ fi
 npm run db:init
 echo '\nMeal Fold is starting. Open the Local address below in your browser.'
 echo 'Keep this window open while using the app. Press Control-C to stop.\n'
-npm run dev
+if [[ ! -f dist/server/wrangler.json ]] || [[ -n "$(find app components lib data public build -type f -newer dist/server/wrangler.json -print -quit)" ]]; then
+  npm run build
+fi
+node scripts/serve-local.mjs
