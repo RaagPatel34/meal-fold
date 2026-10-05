@@ -52,10 +52,13 @@ export default defineConfig(async () => {
 
   return {
     server: {
+      strictPort: true,
       ...(managedLinux ? { host: "0.0.0.0", allowedHosts: ["terminal.local"] } : {}),
       watch: {
         ignored: ["**/.wrangler/**", "**/dist/**", "**/work/**", "**/.sites-runtime/**"],
-        ...(isCodexSeatbeltSandbox ? { useFsEvents: false, usePolling: true, interval: 500 } : {}),
+        ...(!managedLinux || isCodexSeatbeltSandbox
+          ? { useFsEvents: false, usePolling: true, interval: 1000 }
+          : {}),
       },
     },
     plugins: [
